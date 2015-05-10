@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Emecoffee</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="img/emecoffee.png">
+
+    <!-- CoffeeScript -->
+    <script src="lib/coffee.js"></script>
+
+    <!-- Bootstrap -->
+    <link href="lib/bootstrap-3.0.0/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <!-- codemirror -->
+    <link rel="stylesheet" href="lib/codemirror-3.18/theme/solarized.css">
+    <link rel="stylesheet" href="lib/codemirror-3.18/lib/codemirror.css">
+    <!-- <link rel="stylesheet" href="lib/codemirror-3.18/doc/docs.css"> -->
+    <link rel="stylesheet" href="lib/codemirror-3.18/addon/dialog/dialog.css">
+    <link rel="stylesheet" href="lib/codemirror-3.18/addon/hint/show-hint.css">
+
+    <!--Buttons-->
+    <link rel="stylesheet" href="lib/Buttons/css/font-awesome.min.css">
+    <link rel="stylesheet" href="lib/Buttons/css/buttons.css">
+
+    <!-- Emeco -->
+    <link rel="stylesheet" href="emecoffee.css">
+
+  </head>
+  <body>
+
+    <nav id="header" class="navbar navbar-default navbar-fixed-top">
+      <div class="navbar-header">
+        <img border="0" src="img/emecoffee.png" alt="Emeco" class="icon">
+      </div>
+      <ul class="nav navbar-nav">
+
+        <!--Modal-->
+        <a data-toggle="modal" href="#myModal" class="btn btn-primary" id="modal">What is Emecoffee ?</a>
+
+        <div class="modal fade" id="myModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="color:black;">What is Emecoffee ?</h4>
+              </div>
+              <div class="modal-body">
+                <p>EmecoffeeはCocoaAPIとVimのキーバインドで操作できるプレビュー機能付きエディターです。<br></p>
+                <p>HTMLとCSSのコードは書き換えた時点で即時反映されます。<br></p>
+                <p>CoffeeScriptはコンパイルすることなく、ブラウザで実行することができます。<br></p>
+                <p>HTMLとCSSはEmmetに対応しています。<br></p>
+                <br>
+
+               <h3 style="color:black;">代表的なキーバインド<br></h3>
+                  <ul>
+                    <li>&ltC-t&gt: エディタ切り替え</li>
+                    <li>&ltC-r&gt: CoffeeScript実行</li>
+                    <li>&ltC-s&gt: 保存</li>
+                    <li>&ltC-y&gt: 補完</li>
+                    <li>&ltCmd-k&gt: HTMLタグを消す</li>
+                    <li>Tab: Emmet展開（HTML・CSS）</li>
+                  </ul>
+
+                <h3 style="color:black;">リンク</h3>
+                <ul>
+                  <li><a href="http://emmet.io/" target="_blank">Emmet</a></li>
+                  <li><a href="http://codemirror.net/" target="_blank">CodeMirror</a></li>
+                </ul>
+
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal">OK!</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--HTML保存用のモーダル-->
+        <div class="modal fade" id="saveHtml">
+          <div class="modal-dialog">
+            <div class="modal-content" style="width:500px;">
+              <div class="modal-header">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="color:black;">ファイルを保存</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <input type="text" id="htmlFileName" class="form-control" placeholder="ファイル名">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal" class="cancelButton">キャンセル</button>
+                <button class="btn btn-primary" data-dismiss="modal" id="htmlOK">OK!</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--CSS保存用のモーダル-->
+        <div class="modal fade" id="saveCss">
+          <div class="modal-dialog">
+            <div class="modal-content" style="width:500px;">
+              <div class="modal-header">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="color:black;">ファイルを保存</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <input type="text" id="cssFileName" class="form-control" placeholder="ファイル名">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal" class="cancelButton">キャンセル</button>
+                <button class="btn btn-primary" data-dismiss="modal" id="cssOK">OK!</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Coffee保存用のモーダル-->
+        <div class="modal fade" id="saveCoffee">
+          <div class="modal-dialog">
+            <div class="modal-content" style="width:500px;">
+              <div class="modal-header">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="color:black;">ファイルを保存</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <input type="text" id="coffeeFileName" class="form-control" placeholder="ファイル名">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal" class="cancelButton">キャンセル</button>
+                <button class="btn btn-primary" data-dismiss="modal" id="coffeeOK">OK!</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ul>
+      <a id="emeco" href="index.html">
+        <img src="img/emeco_icon1.png" alt="">
+      </a>
+    </nav>
+
+    <div id="editor">
+      <h2>for style</h2>
+
+          <ul class="nav nav-tabs">
+            <li class="active editorTab"><a href="#html" data-toggle="tab">HTML</a></li>
+            <li class="editorTab"><a href="#css" data-toggle="tab">CSS</a></li>
+            <li class="editorTab"><a href="#coffee" data-toggle="tab">CoffeeScript</a></li>
+          </ul>
+
+          <div class="tab-content">
+
+            <!--HTML-->
+            <div class="tab-pane active" id="html">
+
+              <!-- htmlファイル名入力のダイアログ -->
+              <a href="#" class="button button-rounded button-flat-primary fileButton"><i class="icon-refresh"></i> Load file</a>
+              <a href="#saveHtml" class="button button-rounded button-flat-highlight btn btn-primary save" data-toggle="modal" id="saveButton"><i class="icon-camera"></i> Save</a>
+              <a href="#" class="button button-rounded button-flat-primary button-small insertMode">INSERT</a>
+              <a href="#" class="button button-rounded button-flat-highlight button-small visualMode">VISUAL</a>
+              <a href="#" class="button button-rounded button-flat-action button-small normalMode">NORMAL</a>
+              <div class="inputFile"><input type="file" class="file html"></div>
+              <textarea class="form-control text html" cols="80" rows="30"></textarea>
+            </div>
+
+            <!--CSS-->
+            <div class="tab-pane" id="css">
+
+              <div class="inputFile"><input type="file" class="file css"></div>
+              <a href="#" class="button button-rounded button-flat-primary fileButton"><i class="icon-refresh"></i> Load file</a>
+              <a href="#saveCss" class="button button-rounded button-flat-highlight btn btn-primary save" data-toggle="modal" id="saveButton"><i class="icon-camera"></i> Save</a>
+              <a href="#" class="button button-rounded button-flat-primary button-small insertMode">INSERT</a>
+              <a href="#" class="button button-rounded button-flat-highlight button-small visualMode">VISUAL</a>
+              <a href="#" class="button button-rounded button-flat-action button-small normalMode">NORMAL</a>
+              <textarea class="form-control text css" cols="80" rows="30"></textarea>
+            </div>
+
+            <!-- Coffee -->
+            <div class="tab-pane" id="coffee">
+
+              <div class="inputFile"><input type="file" class="file coffee"></div>
+              <a href="#" class="button button-rounded button-flat-primary fileButton"><i class="icon-refresh"></i> Load file</a>
+              <a href="#saveCoffee" class="button button-rounded button-flat-highlight btn btn-primary save" data-toggle="modal" id="saveButton"><i class="icon-camera"></i> Save</a>
+              <a href="#" class="button button-rounded button-flat-caution" id="coffeeButton"><i class="icon-code"></i> Run</a>
+              <a href="#" class="button button-rounded button-flat-primary button-small insertMode">INSERT</a>
+              <a href="#" class="button button-rounded button-flat-highlight button-small visualMode">VISUAL</a>
+              <a href="#" class="button button-rounded button-flat-action button-small normalMode">NORMAL</a>
+              <textarea class="form-control text coffee" cols="80" rows="30"></textarea>
+            </div>
+          </div>
+
+          </div>
+
+
+        <div id="browser">
+          <iframe id="iframe" frameborder="0"></iframe>
+
+          <!--<div class="jumbotron">-->
+            <!--<h1>Browser</h1>-->
+
+            <!--</div>--><!--.jumbotron-->
+        </div><!-- #browser -->
+    <script src="lib/jquery.js"></script>
+    <script src="lib/bootstrap-3.0.0/dist/js/bootstrap.min.js"></script>
+
+    <!-- Code Mirror -->
+    <script src="lib/codemirror-3.18/lib/codemirror.js"></script>
+    <script src="lib/codemirror-3.18/mode/coffeescript/coffeescript.js"></script>
+    <script src="lib/codemirror-3.18/mode/javascript/javascript.js"></script>
+    <script src="lib/codemirror-3.18/mode/css/css.js"></script>
+    <script src="lib/codemirror-3.18/mode/xml/xml.js"></script>
+    <script src="lib/codemirror-3.18/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="lib/codemirror-3.18/addon/dialog/dialog.js"></script>
+    <script src="lib/codemirror-3.18/addon/search/searchcursor.js"></script>
+    <script src="lib/codemirror-3.18/keymap/vim.js"></script>
+    <script src="lib/codemirror-3.18/addon/hint/show-hint.js"></script>
+    <script src="lib/codemirror-3.18/addon/hint/css-hint.js"></script>
+    <script src="lib/codemirror-3.18/addon/hint/javascript-hint.js"></script>
+    <script src="lib/codemirror-3.18/addon/hint/xml-hint.js"></script>
+    <script src="lib/codemirror-3.18/addon/hint/html-hint.js"></script>
+
+    <!--Buttons-->
+    <script src="lib/Buttons/js/buttons.js"></script>
+
+    <!-- emmet -->
+    <script src="lib/emmet.js"></script>
+
+    <!-- emeco -->
+    <script src="emecoffee.js"></script>
+  </body>
+</html>

@@ -1,0 +1,171 @@
+html {
+  height: 100%;
+}
+
+body {
+  background-color: BurlyWood;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#header {
+  background-color: maroon;
+  color: white;
+}
+
+.navbar-nav > li {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.nav-tabs {
+  margin-top: 3%;
+}
+
+.tab-content {
+  background-color: bisque;
+  width: 93%;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  height: 82%;
+}
+
+#editor {
+  width: 570px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  float: left;
+  position: fixed;
+  left: 2%;
+}
+
+#browser {
+  width: 60%;
+  height: 87%;
+  margin: 0;
+  padding: 0;
+  float: right;
+  left: 570px;
+  position: absolute;
+  top: 10%;
+}
+
+#iframe {
+ border-radius: 10px;
+ border: groove;
+ float: right;
+ height: 100%;
+ width: 1200px;
+ margin: 0;
+ padding: 0;
+ position: absolute;
+ background-color: white;
+ left: 2%;
+}
+
+.CodeMirror {
+  border-radius: 10px;
+  margin-left: 2%;
+  border: 1px solid maroon;
+}
+
+.button {
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-left: 2%;
+}
+
+.download {
+  display: none;
+}
+
+h2 {
+  color: BurlyWood;
+}
+
+.icon {
+  position: absolute;
+  top: 0px;
+  left: 28px;
+}
+
+.normalMode,.insertMode,.visualMode {
+  position: absolute;
+  top: 123px;
+  left: 400px;
+  width: 105px;
+  font-family: arial black;
+}
+.normalMode {
+  z-index: 0;
+  background-color: #d2ff00;
+  color: green;
+}
+
+.insertMode {
+  z-index: 2;
+  background-color: #41efff;
+  color: #001bcd;
+  display: none;
+}
+
+.visualMode {
+  z-index: 3;
+  font-family: arial black;
+  color: #93142e;
+  display: none;
+}
+
+/*モーダルをヘッダにおいたら表示できないのを防ぐ*/
+.modal-backdrop {
+  z-index: 1020;
+}
+
+#modal {
+  position: absolute;
+  left: 180px;
+  top: 10px;
+  background-color: maroon;
+  height: 30px;
+  font-size: 16px;
+  border: none;
+}
+
+.modal-content {
+  position: absolute;
+}
+
+.modal-body {
+  color: black;
+}
+
+.modal-body li {
+  list-style-type: square;
+}
+
+.saveButton {
+  position: absolute;
+  left: 140px;
+  top: 103px;
+}
+
+.inputFile {
+  display: none;
+}
+
+.editorTab {
+  background-color: tan;
+}
+
+li.editorTab.active a {
+  background-color: bisque;
+}
+
+#emeco {
+  margin-left: 26em;
+  background-color: darkcyan;
+}
